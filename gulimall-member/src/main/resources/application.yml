@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://43.138.134.20:3306/gulimall-ums?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+  cloud:
+    nacos:
+      server-addr: localhost:8848
+  application:
+    name: gulimall-member
+mybatis-plus:
+  global-config:
+    db-config:
+      id-type: auto
+
+server:
+  port: 8082

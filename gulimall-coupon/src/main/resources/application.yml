@@ -1,10 +1,25 @@
-spring:
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://43.138.134.20:3306/gulimall-sms?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
-    username: root
-    password: root
-mybatis-plus:
-  global-config:
-    db-config:
-      id-type: auto
+#spring:
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://43.138.134.20:3306/gulimall-sms?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+#    username: root
+#    password: root
+#  cloud:
+#    nacos:
+#      server-addr: localhost:8848
+#      discovery:
+#        namespace: a202f1de-48e2-4841-80b4-b35bad25f21a
+#      config:
+#        namespace: a202f1de-48e2-4841-80b4-b35bad25f21a
+#        extension-configs:
+#          - dataId: gulimall-coupon.yml
+#            group: dev
+#            refresh: true
+#  application:
+#    name: gulimall-coupon
+#mybatis-plus:
+#  global-config:
+#    db-config:
+#      id-type: auto
+#server:
+#  port: 8081
