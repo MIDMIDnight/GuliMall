@@ -1,11 +1,13 @@
 package com.ccc.gulimall.product.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 
 import com.ccc.common.utils.PageUtils;
 import com.ccc.common.utils.R;
+import com.ccc.gulimall.product.service.impl.CategoryServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,15 +32,21 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
-    /**
-     * 列表
+    /***
+     * @description: 以树形结构返回目录
+     * @param:
+     * @return: com.ccc.common.utils.R
+     * @author 陈南田
+     * @date: 10/30/2022 4:00 PM
      */
     @RequestMapping("/list")
     //@RequiresPermissions("product:category:list")
-    public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = categoryService.queryPage(params);
-
-        return R.ok().put("page", page);
+    public R list(){
+//        CategoryServiceImpl categoryService1 = new CategoryServiceImpl();
+        List<CategoryEntity> categoryEntities = categoryService.listWithTree();
+//        List<CategoryEntity> list = categoryService.list();
+//        List<CategoryEntity> categoryEntities = categoryService.listWithTree();
+        return R.ok().put("data",categoryEntities);
     }
 
 
