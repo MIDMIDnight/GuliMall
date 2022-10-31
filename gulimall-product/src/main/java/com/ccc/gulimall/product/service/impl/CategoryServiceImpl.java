@@ -43,7 +43,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
         List<CategoryEntity> categoryEntities =baseMapper.selectList(null);
 
         List<CategoryEntity> categoryEntityList = categoryEntities.stream()
-                .filter(categoryEntity -> categoryEntity.getCatId() == 1).map(menu -> {
+                .filter(categoryEntity -> categoryEntity.getCatLevel() == 1).map(menu -> {
                     menu.setChildren(getMenuChildren(menu, categoryEntities));
                     return menu;
                 })
@@ -52,6 +52,12 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
 //                })
                 .collect(Collectors.toList());
         return categoryEntityList;
+    }
+
+    @Override
+    public void removeMenuByIds(List<Long> asList) {
+        //TODO 1.检查当前删除的菜单是否在其他地方被引用
+        baseMapper.deleteBatchIds(asList);
     }
 
     private List<CategoryEntity> getMenuChildren(CategoryEntity root, List<CategoryEntity> all) {
