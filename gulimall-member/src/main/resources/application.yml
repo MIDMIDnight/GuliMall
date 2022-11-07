@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://43.138.134.20:3306/gulimall-ums?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://bj-cynosdbmysql-grp-cjozdt8w.sql.tencentcdb.com:21670/gulimall-ums?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
     username: root
-    password: root
+    password: CNTweiai1314
   cloud:
     nacos:
       server-addr: localhost:8848

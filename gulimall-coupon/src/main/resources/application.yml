@@ -23,3 +23,6 @@
 #      id-type: auto
 #server:
 #  port: 8081
+url: jdbc:mysql://bj-cynosdbmysql-grp-cjozdt8w.sql.tencentcdb.com:21670/gulimall-wms?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+username: root
+password: CNTweiai1314

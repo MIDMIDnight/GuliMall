@@ -15,8 +15,7 @@ public class GulimallProductApplication {
 
     public static void main(String[] args) {
         ConfigurableApplicationContext run = SpringApplication.run(GulimallProductApplication.class, args);
-        Object categoryDao = run.getBean(CategoryDao.class);
-        Object categoryService = run.getBean("categoryService");
+
     }
 
 }

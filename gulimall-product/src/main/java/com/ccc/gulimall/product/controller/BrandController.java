@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ccc.gulimall.product.entity.BrandEntity;
 import com.ccc.gulimall.product.service.BrandService;
 
+import javax.validation.Valid;
+
 
 /**
  * 品牌
@@ -58,7 +60,7 @@ public class BrandController {
      */
     @RequestMapping("/save")
    // @RequiresPermissions("product:brand:save")
-    public R save(@RequestBody BrandEntity brand){
+    public R save(@Valid @RequestBody BrandEntity brand){
 		brandService.save(brand);
 
         return R.ok();
