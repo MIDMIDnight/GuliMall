@@ -2,9 +2,12 @@ package com.ccc.gulimall.product.service.impl;
 
 import com.ccc.common.utils.PageUtils;
 import com.ccc.common.utils.Query;
+import com.ccc.gulimall.product.entity.AttrGroupEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -60,6 +63,22 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
         baseMapper.deleteBatchIds(asList);
     }
 
+    @Override
+    public Long[] findCategoryIds(Long catelogId) {
+        List<Long> categoryIds=new ArrayList<>();
+        List<Long> categoryPath = findCategoryPath(catelogId, categoryIds);
+        Collections.reverse(categoryPath);
+        return (Long[]) categoryPath.toArray(new Long[categoryPath.size()]);
+    }
+    private List<Long> findCategoryPath(Long catId,List<Long> categoryIds){
+        categoryIds.add(catId);
+        CategoryEntity byId = this.getById(catId);
+        if (byId.getParentCid()!=0){
+             findCategoryPath(byId.getParentCid(), categoryIds);
+        }
+        return categoryIds;
+
+    }
     private List<CategoryEntity> getMenuChildren(CategoryEntity root, List<CategoryEntity> all) {
         List<CategoryEntity> children = all.stream()
                 .filter(categoryEntity -> categoryEntity.getParentCid() == root.getCatId())
