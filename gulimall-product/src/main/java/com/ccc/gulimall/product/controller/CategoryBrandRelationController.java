@@ -1,9 +1,11 @@
 package com.ccc.gulimall.product.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.ccc.common.utils.PageUtils;
 import com.ccc.common.utils.R;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +43,15 @@ public class CategoryBrandRelationController {
         return R.ok().put("page", page);
     }
 
+    @RequestMapping("/catelog/list")
+    //@RequiresPermissions("product:categorybrandrelation:list")
+    public R cateloglist(@RequestParam("brandId") Long brandId){
+
+        List<CategoryBrandRelationEntity> data = categoryBrandRelationService.list(
+                new QueryWrapper<CategoryBrandRelationEntity>().eq("brand_id", brandId)
+        );
+        return R.ok().put("data", data);
+    }
 
     /**
      * 信息
@@ -59,7 +70,7 @@ public class CategoryBrandRelationController {
     @RequestMapping("/save")
    // @RequiresPermissions("product:categorybrandrelation:save")
     public R save(@RequestBody CategoryBrandRelationEntity categoryBrandRelation){
-		categoryBrandRelationService.save(categoryBrandRelation);
+		categoryBrandRelationService.saveDetail(categoryBrandRelation);
 
         return R.ok();
     }

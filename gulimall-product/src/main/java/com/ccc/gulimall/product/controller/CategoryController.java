@@ -39,7 +39,7 @@ public class CategoryController {
      * @author 陈南田
      * @date: 10/30/2022 4:00 PM
      */
-    @RequestMapping("/list")
+    @RequestMapping("/list/tree")
     //@RequiresPermissions("product:category:list")
     public R list(){
 //        CategoryServiceImpl categoryService1 = new CategoryServiceImpl();
@@ -78,7 +78,7 @@ public class CategoryController {
     @RequestMapping("/update")
   //  @RequiresPermissions("product:category:update")
     public R update(@RequestBody CategoryEntity category){
-		categoryService.updateById(category);
+		categoryService.updateCascade(category);
 
         return R.ok();
     }

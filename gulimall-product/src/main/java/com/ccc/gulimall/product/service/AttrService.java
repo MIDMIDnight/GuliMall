@@ -3,6 +3,7 @@ package com.ccc.gulimall.product.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.ccc.common.utils.PageUtils;
 import com.ccc.gulimall.product.entity.AttrEntity;
+import com.ccc.gulimall.product.vo.AttrVo;
 
 import java.util.Map;
 
@@ -16,5 +17,9 @@ import java.util.Map;
 public interface AttrService extends IService<AttrEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    void saveAttr(AttrVo attr);
+
+    PageUtils qurryBaseAttrPage(Map<String, Object> params, Long catelogId);
 }
 

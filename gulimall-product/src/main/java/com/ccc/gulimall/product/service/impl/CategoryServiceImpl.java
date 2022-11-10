@@ -3,6 +3,7 @@ package com.ccc.gulimall.product.service.impl;
 import com.ccc.common.utils.PageUtils;
 import com.ccc.common.utils.Query;
 import com.ccc.gulimall.product.entity.AttrGroupEntity;
+import com.ccc.gulimall.product.service.CategoryBrandRelationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +26,8 @@ import com.ccc.gulimall.product.service.CategoryService;
 public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity> implements CategoryService {
     final
     CategoryDao categoryDao;
+    @Autowired
+    CategoryBrandRelationService categoryBrandRelationService;
 
     public CategoryServiceImpl(CategoryDao categoryDao) {
         this.categoryDao = categoryDao;
@@ -70,6 +73,21 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
         Collections.reverse(categoryPath);
         return (Long[]) categoryPath.toArray(new Long[categoryPath.size()]);
     }
+    /***
+     * @description:  更新所有级联属性(烦死爷算了)
+     * @param: category
+     * @return: void
+     * @author 陈南田
+     * @date: 11/9/2022 11:24 AM
+     */
+
+    @Override
+    public void updateCascade(CategoryEntity category) {
+        this.updateById(category);
+        categoryBrandRelationService.updateCategory(category.getCatId(),category.getName());
+
+    }
+
     private List<Long> findCategoryPath(Long catId,List<Long> categoryIds){
         categoryIds.add(catId);
         CategoryEntity byId = this.getById(catId);
