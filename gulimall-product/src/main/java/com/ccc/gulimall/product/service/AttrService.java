@@ -3,8 +3,11 @@ package com.ccc.gulimall.product.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.ccc.common.utils.PageUtils;
 import com.ccc.gulimall.product.entity.AttrEntity;
+import com.ccc.gulimall.product.vo.AttrGroupRelationVo;
+import com.ccc.gulimall.product.vo.AttrRespVo;
 import com.ccc.gulimall.product.vo.AttrVo;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -20,6 +23,15 @@ public interface AttrService extends IService<AttrEntity> {
 
     void saveAttr(AttrVo attr);
 
-    PageUtils qurryBaseAttrPage(Map<String, Object> params, Long catelogId);
+    PageUtils qurryBaseAttrPage(Map<String, Object> params, Long catelogId, String type);
+
+    AttrRespVo getInfo(Long attrId);
+
+    void updateAttr(AttrVo attr);
+
+    List<AttrEntity> getRelationAttr(Long attrgroupId);
+
+    void deleteRelation(AttrGroupRelationVo[] attrGroupRelationVos);
+
 }
 

@@ -1,18 +1,18 @@
 package com.ccc.gulimall.product.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 
 import com.ccc.common.utils.PageUtils;
 import com.ccc.common.utils.R;
+import com.ccc.gulimall.product.entity.AttrEntity;
+import com.ccc.gulimall.product.service.AttrService;
 import com.ccc.gulimall.product.service.CategoryService;
+import com.ccc.gulimall.product.vo.AttrGroupRelationVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.ccc.gulimall.product.entity.AttrGroupEntity;
 import com.ccc.gulimall.product.service.AttrGroupService;
@@ -32,6 +32,27 @@ public class AttrGroupController {
     private AttrGroupService attrGroupService;
     @Autowired
     CategoryService categoryService;
+    @Autowired
+    AttrService attrService;
+    @PostMapping("/attr/relation/delete")
+    public R deleteRelation(@RequestBody AttrGroupRelationVo[] attrGroupRelationVos){
+        attrService.deleteRelation(attrGroupRelationVos);
+
+        return R.ok();
+    }
+
+    /**
+     * @description: /{attrgroupId}/attr/relation product/attrgroup/1/noattr/relation
+     * @param:  attrgroupId
+     * @return:
+     * @author 陈南田
+     * @date: 11/10/2022 10:55 PM
+     */
+    @GetMapping("/{attrgroupId}/attr/relation")
+    public R list(@PathVariable("attrgroupId") Long attrgroupId){
+        List<AttrEntity> list=attrService.getRelationAttr(attrgroupId);
+        return R.ok().put("data",list);
+    }
 
     /**
      * 列表
