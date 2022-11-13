@@ -8,6 +8,7 @@ import java.util.Map;
 import com.ccc.common.utils.PageUtils;
 import com.ccc.common.utils.R;
 import com.ccc.gulimall.product.entity.AttrEntity;
+import com.ccc.gulimall.product.service.AttrAttrgroupRelationService;
 import com.ccc.gulimall.product.service.AttrService;
 import com.ccc.gulimall.product.service.CategoryService;
 import com.ccc.gulimall.product.vo.AttrGroupRelationVo;
@@ -34,6 +35,14 @@ public class AttrGroupController {
     CategoryService categoryService;
     @Autowired
     AttrService attrService;
+    @Autowired
+    AttrAttrgroupRelationService attrAttrgroupRelationService;
+
+    @PostMapping("/attr/relation")
+    public R addRelation(@RequestBody List<AttrGroupRelationVo> attrGroupRelationVo){
+        attrAttrgroupRelationService.saveBatch(attrGroupRelationVo);
+        return R.ok();
+    }
     @PostMapping("/attr/relation/delete")
     public R deleteRelation(@RequestBody AttrGroupRelationVo[] attrGroupRelationVos){
         attrService.deleteRelation(attrGroupRelationVos);
@@ -53,6 +62,13 @@ public class AttrGroupController {
         List<AttrEntity> list=attrService.getRelationAttr(attrgroupId);
         return R.ok().put("data",list);
     }
+    @GetMapping("/{attrgroupId}/noattr/relation")
+    public R attrNoRelation(@PathVariable("attrgroupId") Long attrgroupId,
+                            @RequestParam Map<String, Object> params){
+        PageUtils pageUtils=attrService.getNoRelationAttr(attrgroupId,params);
+        return R.ok().put("page",pageUtils);
+    }
+
 
     /**
      * 列表
