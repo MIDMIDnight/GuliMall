@@ -3,11 +3,14 @@ package com.ccc.gulimall.product.controller;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.ccc.common.utils.PageUtils;
 import com.ccc.common.utils.R;
+import com.ccc.gulimall.product.entity.BrandEntity;
+import com.ccc.gulimall.product.vo.BrandVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -41,6 +44,17 @@ public class CategoryBrandRelationController {
         PageUtils page = categoryBrandRelationService.queryPage(params);
 
         return R.ok().put("page", page);
+    }
+    @RequestMapping("/brands/list")
+    public R brandList(@RequestParam(value = "catId",required = true) Long catId){//required = true 一定携带这个参数不然不给过
+        List<BrandEntity> vos=categoryBrandRelationService.getBrandBycatId(catId);
+        List<BrandVo> collect = vos.stream().map(item -> {
+            BrandVo brandVo = new BrandVo();
+            brandVo.setBrandId(item.getBrandId());
+            brandVo.setBrandName(item.getName());
+            return brandVo;
+        }).collect(Collectors.toList());
+        return R.ok().put("data",collect);
     }
 
     @RequestMapping("/catelog/list")

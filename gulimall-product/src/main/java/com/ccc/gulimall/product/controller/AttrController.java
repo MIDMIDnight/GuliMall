@@ -8,11 +8,9 @@ import com.ccc.common.utils.PageUtils;
 import com.ccc.common.utils.R;
 import com.ccc.gulimall.product.vo.AttrRespVo;
 import com.ccc.gulimall.product.vo.AttrVo;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import com.ccc.gulimall.product.entity.AttrEntity;
 import com.ccc.gulimall.product.service.AttrService;
 
 

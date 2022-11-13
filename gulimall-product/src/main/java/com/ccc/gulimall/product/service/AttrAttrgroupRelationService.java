@@ -21,5 +21,6 @@ public interface AttrAttrgroupRelationService extends IService<AttrAttrgroupRela
 
     void saveBatch(List<AttrGroupRelationVo> attrGroupRelationVo);
 
+
 }
 

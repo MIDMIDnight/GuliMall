@@ -2,8 +2,13 @@ package com.ccc.gulimall.product.vo;
 
 import lombok.Data;
 
+/**
+
+ **/
+
 @Data
 public class AttrVo {
+
     /**
      * 属性id
      */
@@ -17,10 +22,6 @@ public class AttrVo {
      */
     private Integer searchType;
     /**
-     * 值类型[0-为单个值，1-可以选择多个值]
-     */
-    private Integer valueType;
-    /**
      * 属性图标
      */
     private String icon;
@@ -29,7 +30,7 @@ public class AttrVo {
      */
     private String valueSelect;
     /**
-     * 属性类型[0-销售属性，1-基本属性
+     * 属性类型[0-销售属性，1-基本属性，2-既是销售属性又是基本属性]
      */
     private Integer attrType;
     /**
@@ -44,13 +45,7 @@ public class AttrVo {
      * 快速展示【是否展示在介绍上；0-否 1-是】，在sku中仍然可以调整
      */
     private Integer showDesc;
-    /**
-     * @description: 分组id
-     * @param: null
-     * @return:
-     * @author 陈南田
-     * @date: 11/9/2022 7:31 PM
-     */
+
     private Long attrGroupId;
 
 }
